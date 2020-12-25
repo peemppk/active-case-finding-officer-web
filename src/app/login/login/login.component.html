@@ -1,0 +1,31 @@
+<div class="main-container">
+    <div class="clr-row wrapper">
+        <div class="clr-col-4">
+            <div class="card">
+                <div class="card-block">
+                    <div class="card-title">
+                        LOGIN
+                    </div>
+                    <div class="card-text">
+                        <div class="clr-row">
+                            <div class="clr-col-12">
+                                <input class="clr-col-8 clr-input width-fit" placeholder="เบอร์โทรศัพท์"
+                                    name="input" [(ngModel)]="input" />
+                                <button style="float: right;" class="clr-col-4 width-fit" class="btn btn-primary btn-sm">ขอ OTP</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="clr-row">
+                            <div class="clr-col-12">
+                                <input class="clr-col-12 clr-input width-fit" placeholder="OTP 6 หลัก" name="input" [(ngModel)]="input" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button (click)="doLogin()" class="btn btn-success">ยืนยัน</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
