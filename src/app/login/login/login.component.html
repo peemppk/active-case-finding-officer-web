@@ -9,23 +9,128 @@
                     <div class="card-text">
                         <div class="clr-row">
                             <div class="clr-col-12">
-                                <input class="clr-col-8 clr-input width-fit" placeholder="เบอร์โทรศัพท์"
-                                    name="input" [(ngModel)]="input" />
-                                <button style="float: right;" class="clr-col-4 width-fit" class="btn btn-primary btn-sm">ขอ OTP</button>
+                                <input class="clr-col-8 clr-input width-fit" placeholder="เบอร์โทรศัพท์" name="input"
+                                    [(ngModel)]="input" />
+                                <button style="float: right;" class="clr-col-4 width-fit"
+                                    class="btn btn-primary btn-sm">ขอ OTP</button>
                             </div>
                         </div>
                         <br>
                         <div class="clr-row">
                             <div class="clr-col-12">
-                                <input class="clr-col-12 clr-input width-fit" placeholder="OTP 6 หลัก" name="input" [(ngModel)]="input" />
+                                <input class="clr-col-12 clr-input width-fit" placeholder="OTP 6 หลัก" name="input"
+                                    [(ngModel)]="input" />
+                            </div>
+                        </div>
+                        <br>
+                        <div class="clr-row">
+                            <div class="clr-col-12">
+                                <input class="clr-col-12 clr-input width-fit" placeholder="Event Code" name="input"
+                                    [(ngModel)]="input" />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
                     <button (click)="doLogin()" class="btn btn-success">ยืนยัน</button>
+                    <button (click)="getEvent()" class="btn btn-success-outline">Event</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<clr-modal [(clrModalOpen)]="modalEvent" [clrModalClosable]="false" [clrModalSize]="'xl'">
+    <h3 class="modal-title">Event</h3>
+    <div class="modal-body">
+        <div class="clr-row">
+            <div class="clr-col-7">
+                <clr-datagrid>
+                    <clr-dg-column>User ID</clr-dg-column>
+                    <clr-dg-column>Name</clr-dg-column>
+                    <clr-dg-column>Creation date</clr-dg-column>
+                    <clr-dg-column>Favorite color</clr-dg-column>
+                    <clr-dg-column>Favorite color</clr-dg-column>
+
+                    <clr-dg-row *ngFor="let user of eventList">
+                        <clr-dg-cell>{{user.id}}</clr-dg-cell>
+                        <clr-dg-cell>{{user.name}}</clr-dg-cell>
+                        <clr-dg-cell>{{user.creation}}</clr-dg-cell>
+                        <clr-dg-cell>{{user.color}}</clr-dg-cell>
+                        <clr-dg-cell><input type="checkbox" clrToggle value="option1" name="options" /></clr-dg-cell>
+                    </clr-dg-row>
+                    <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+                </clr-datagrid>
+            </div>
+            <div class="clr-col-5">
+                <div class="clr-row">
+                    <div class="card" style="padding: 0;margin: 0;">
+                        <div class="card-block">
+                            <div class="card-text">
+                                <div class="clr-row">
+                                    <div class="clr-col-12">
+                                        <div class="clr-form clr-form-compact clr-row">
+                                            <label class="clr-control-label clr-col-3">รายละเอียด : </label>
+                                            <input type="text" [(ngModel)]="detail"
+                                                class="clr-col-9 clr-input width-fit" placeholder="รายละเอียด">
+                                        </div>
+                                    </div>
+                                    <div class="clr-col-12">
+                                        <div class="clr-form clr-form-compact clr-row">
+                                            <label class="clr-control-label clr-col-3">ที่อยู่ : </label>
+                                            <input type="text" [(ngModel)]="address"
+                                                class="clr-col-9 clr-input width-fit" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="clr-col-12">
+                                        <div class="clr-form clr-form-compact clr-row">
+                                            <label class="clr-control-label clr-col-3">ตำบล : </label>
+
+                                            <div class="clr-select-wrapper clr-col-9">
+                                                <select class="clr-select" style="width: 100%;" [(ngModel)]="newTambon">
+                                                    <option *ngFor="let i of tambon" [value]="i.id">{{i.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clr-col-12">
+                                        <div class="clr-form clr-form-compact clr-row">
+                                            <label class="clr-control-label clr-col-3">อำเภอ : </label>
+
+                                            <div class="clr-select-wrapper clr-col-9">
+                                                <select class="clr-select" style="width: 100%;" [(ngModel)]="newAmpur">
+                                                    <option *ngFor="let i of ampur" [value]="i.id">{{i.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clr-col-12">
+                                        <div class="clr-form clr-form-compact clr-row">
+                                            <label class="clr-control-label clr-col-3">จังหวัด : </label>
+
+                                            <div class="clr-select-wrapper clr-col-9">
+                                                <select class="clr-select" style="width: 100%;"
+                                                    [(ngModel)]="newProvince">
+                                                    <option *ngFor="let i of province" [value]="i.id">{{i.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-outline">เพิ่ม</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modalEvent = false">ยืนยัน</button>
+    </div>
+</clr-modal>

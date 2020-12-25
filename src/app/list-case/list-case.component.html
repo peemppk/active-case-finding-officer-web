@@ -1,0 +1,28 @@
+<div class="main-container">
+    <div class="clr-row">
+        <div class="clr-col-3 clr-offset-9">
+            <div style="float: right;">
+                <div class="btn-group btn-primary">
+                    <button (click)="register()" class="btn">Register</button>
+                    <button (click)="scan()" class="btn btn-success">Scan</button>
+                </div>
+            </div>
+        </div>
+        <div class="clr-col-12">
+            <clr-datagrid>
+                <clr-dg-column>User ID</clr-dg-column>
+                <clr-dg-column>Name</clr-dg-column>
+                <clr-dg-column>Creation date</clr-dg-column>
+                <clr-dg-column>Favorite color</clr-dg-column>
+
+                <clr-dg-row *ngFor="let user of caseList">
+                    <clr-dg-cell>{{user.id}}</clr-dg-cell>
+                    <clr-dg-cell>{{user.name}}</clr-dg-cell>
+                    <clr-dg-cell>{{user.creation}}</clr-dg-cell>
+                    <clr-dg-cell>{{user.color}}</clr-dg-cell>
+                </clr-dg-row>
+                <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+            </clr-datagrid>
+        </div>
+    </div>
+</div>

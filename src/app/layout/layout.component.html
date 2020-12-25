@@ -1,0 +1,39 @@
+<div class="main-container">
+    <header class="header">
+        <div class="branding">
+            <a href="javascript://" class="nav-link">
+                <span class="title" routerLink="/staff/home">Officer</span>
+            </a>
+        </div>
+        <div class="header-nav">
+            <a routerLink="/officer/list-case" routerLinkActive="active"
+                class="nav-link nav-icon tooltip tooltip-md tooltip-bottom-right">
+                <clr-icon shape="home"></clr-icon>
+                <!-- <span class="tooltip-content">Home</span> -->
+            </a>
+            <a routerLink="/officer/scan-lab" routerLinkActive="active"
+                class="nav-link nav-icon tooltip tooltip-md tooltip-bottom-right">
+                <clr-icon shape="bar-code"></clr-icon>
+                <!-- <span class="tooltip-content">Home</span> -->
+            </a>
+        </div>
+        <div class="header-actions">
+            <clr-dropdown>
+                <button class="nav-text" clrDropdownTrigger>
+                    <!-- {{fullname}}-{{hospname}} -->
+                    <clr-icon shape="caret down"></clr-icon>
+                </button>
+                <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+                    <!-- <a href="javascript://" clrDropdownItem>เปลี่ยนรหัสผ่าน</a> -->
+                    <!-- <a href="javascript://" (click)="checkMqtt()" clrDropdownItem>develop</a> -->
+                    <a href="javascript://" (click)="logout()" clrDropdownItem>ออกจากระบบ</a>
+                </clr-dropdown-menu>
+            </clr-dropdown>
+        </div>
+    </header>
+    <div class="content-container">
+        <div class="content-area">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

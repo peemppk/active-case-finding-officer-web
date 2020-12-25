@@ -19,8 +19,6 @@ export class InputCaseComponent implements OnInit {
   province: any;
   doctype: any;
 
-  modal: any = false;
-
   detail: any;
 
   constructor(
@@ -28,16 +26,6 @@ export class InputCaseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  }
-
-  logout(): void {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('access_token');
-    this.router.navigate(['/login']);
-  }
-
-  openModal(): void {
-    this.modal = true;
   }
 
 }

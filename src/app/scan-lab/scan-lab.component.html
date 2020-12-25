@@ -1,0 +1,39 @@
+<div class="main-container">
+    <div class="clr-row wrapper2">
+        <div class="clr-col-4">
+            <div class="card">
+                <div class="card-block">
+                    <div class="card-title">
+                        Scan Lab 
+                        <br>
+                    </div>
+                    <div class="card-text">
+                        <div class="clr-row">
+                            <div class="clr-col-12">
+                                <div class="clr-form clr-form-compact clr-row">
+                                    <label class="clr-control-label clr-col-3">เลขลงทะเบียน : </label>
+                                    <input type="text" name="query" [(ngModel)]="userCode"
+                                        class="clr-col-7 clr-input width-fit" placeholder="">
+                                </div>
+                            </div>
+                            <div class="clr-col-12">
+                                <div class="clr-form clr-form-compact clr-row">
+                                    <label class="clr-control-label clr-col-3">เลขLab : </label>
+                                    <input type="text" name="query" [(ngModel)]="labCode"
+                                        class="clr-col-7 clr-input width-fit" placeholder="">
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="clr-col-12">
+                                <div style="text-align: center;">
+                                    <button (click)="scan()" class="btn btn-success">ยืนยัน</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

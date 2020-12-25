@@ -1,0 +1,28 @@
+<div class="main-container">
+    <div class="clr-row wrapper2">
+        <div class="clr-col-4">
+            <div class="card">
+                <div class="card-block">
+                    <div class="card-title">
+                        Scan Barcode Register
+                        <br>
+                    </div>
+                    <div class="card-text">
+                        <div class="clr-row">
+                            <div class="clr-col-12">
+                                <input class="clr-col-12 clr-input width-fit" placeholder="" [(ngModel)]="code" />
+                            </div>
+                            <br>
+                            <br>
+                            <div class="clr-col-12">
+                                <div style="text-align: center;">
+                                    <button (click)="scan()" class="btn btn-success">ยืนยัน</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
