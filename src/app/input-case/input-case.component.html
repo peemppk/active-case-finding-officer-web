@@ -7,9 +7,9 @@
                         <div class="clr-form clr-form-compact clr-row">
                             <label class="clr-control-label clr-col-3">ถ่ายรูปหน้า : </label>
                             <div class="clr-col-8">
-                                <button class="btn btn-primary btn-outline btn-sm">
+                                <button class="btn btn-primary btn-outline btn-sm"  (click)="openModalWebcam()" >
                                     <input type="file" #fileInput style="display: none;">
-                                    รูป<clr-icon shape="image"></clr-icon>
+                                    ถ่ายรูป<clr-icon shape="camera"></clr-icon>
                                 </button>
                             </div>
                         </div>
@@ -166,3 +166,6 @@
         </div>
     </div>
 </div>
+
+
+<app-camera #camera (onsave)="onSaveProfile($event)"></app-camera>

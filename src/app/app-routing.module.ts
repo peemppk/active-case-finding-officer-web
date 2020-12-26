@@ -7,7 +7,7 @@ import { ScanLabComponent } from './scan-lab/scan-lab.component';
 import { ScanComponent } from './scan/scan.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'officer', pathMatch: 'full' },
   {
     path: 'officer',
     component: LayoutComponent,
