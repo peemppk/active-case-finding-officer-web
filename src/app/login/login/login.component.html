@@ -1,6 +1,6 @@
 <div class="main-container">
     <div class="clr-row wrapper">
-        <div class="clr-col-4">
+        <div class="clr-col-4 clr-offset-4">
             <div class="card">
                 <div class="card-block">
                     <div class="card-title">
@@ -9,31 +9,37 @@
                     <div class="card-text">
                         <div class="clr-row">
                             <div class="clr-col-12">
-                                <input class="clr-col-8 clr-input width-fit" placeholder="เบอร์โทรศัพท์" name="input"
-                                    [(ngModel)]="input" />
-                                <button style="float: right;" class="clr-col-4 width-fit"
+                                <input class="clr-col-7 clr-input width-fit" [disabled]="ref.length"
+                                    placeholder="เบอร์โทรศัพท์" [(ngModel)]="telephone" maxlength="10" />
+                                <span *ngIf="ref">Ref: {{ref}}</span>
+                                <button style="float: right;" class="clr-col-4 width-fit" (click)="requestOTP()"
+                                    [disabled]="isLoad" [disabled]="telephone.length < 10 || isVerify"
                                     class="btn btn-primary btn-sm">ขอ OTP</button>
                             </div>
                         </div>
                         <br>
                         <div class="clr-row">
                             <div class="clr-col-12">
-                                <input class="clr-col-12 clr-input width-fit" placeholder="OTP 6 หลัก" name="input"
-                                    [(ngModel)]="input" />
+                                <input class="clr-col-7 clr-input width-fit" placeholder="OTP 6 หลัก" maxlength="6"
+                                    [(ngModel)]="otp" [disabled]="isVerify"/>
+                                <button style="float: right;" class="clr-col-4 width-fit" (click)="verify()"
+                                    [disabled]="isLoad || !ref || isVerify" class="btn btn-primary btn-sm">ยืนยัน OTP</button>
                             </div>
                         </div>
                         <br>
                         <div class="clr-row">
                             <div class="clr-col-12">
-                                <input class="clr-col-12 clr-input width-fit" placeholder="Event Code" name="input"
-                                    [(ngModel)]="input" />
+                                <input class="clr-col-12 clr-input width-fit" placeholder="Event Code"
+                                    [(ngModel)]="eventCode" />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button (click)="doLogin()" class="btn btn-success">ยืนยัน</button>
-                    <button (click)="getEvent()" class="btn btn-success-outline">Event</button>
+                    <button (click)="doLogin()" [disabled]="isLoad || eventCode.length < 1 || otp.length < 6"
+                        class="btn btn-success">ยืนยัน</button>
+                    <button (click)="getEvent()" [disabled]="isLoad || !isVerify"
+                        class="btn btn-success-outline">Event</button>
                 </div>
             </div>
         </div>

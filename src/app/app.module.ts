@@ -11,7 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { ListCaseComponent } from './list-case/list-case.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ScanComponent } from './scan/scan.component';
+import { environment } from 'src/environments/environment';
 import { ScanLabComponent } from './scan-lab/scan-lab.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -28,9 +31,12 @@ import { ScanLabComponent } from './scan-lab/scan-lab.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     LoginModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: 'API_URL', useValue: environment.apiUrl },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
