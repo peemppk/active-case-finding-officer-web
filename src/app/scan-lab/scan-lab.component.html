@@ -11,15 +11,15 @@
                         <div class="clr-row">
                             <div class="clr-col-12">
                                 <div class="clr-form clr-form-compact clr-row">
-                                    <label class="clr-control-label clr-col-3">เลขลงทะเบียน : </label>
-                                    <input type="text" name="query" [(ngModel)]="userCode"
+                                    <label class="clr-control-label clr-col-4">เลขอ้างอิงบุคคล : </label>
+                                    <input id="serialCode" type="text" name="query" (keyup)="onKeySerialCode($event)" style="font-size:1.5rem" [(ngModel)]="userCode"
                                         class="clr-col-7 clr-input width-fit" placeholder="">
                                 </div>
                             </div>
                             <div class="clr-col-12">
                                 <div class="clr-form clr-form-compact clr-row">
-                                    <label class="clr-control-label clr-col-3">เลขLab : </label>
-                                    <input type="text" name="query" [(ngModel)]="labCode"
+                                    <label class="clr-control-label clr-col-4">เลขสิ่งส่งตรวจ : </label>
+                                    <input id="specimenCode" type="text" name="query" (keyup)="onKeySpecimenCode($event)" style="font-size:1.5rem" [(ngModel)]="labCode"
                                         class="clr-col-7 clr-input width-fit" placeholder="">
                                 </div>
                             </div>
@@ -27,7 +27,7 @@
                             <br>
                             <div class="clr-col-12">
                                 <div style="text-align: center;">
-                                    <button (click)="scan()" class="btn btn-success">ยืนยัน</button>
+                                    <button (click)="onSave()" [disabled]="isSave" class="btn btn-success">ยืนยัน</button>
                                 </div>
                             </div>
                         </div>

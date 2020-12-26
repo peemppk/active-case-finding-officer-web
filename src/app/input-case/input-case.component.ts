@@ -44,6 +44,7 @@ export class InputCaseComponent implements OnInit {
   eventId: any;
 
   editService: any;
+  profiles: any;
 
   @ViewChild('camera') camera: CameraComponent;
   constructor(
@@ -74,8 +75,9 @@ export class InputCaseComponent implements OnInit {
   }
 
   onSaveProfile(e): void {
-    console.log(e);
-    // this.caseService.testSave(e._imageAsDataUrl);
+    this.profiles = e;
+    // console.log(e);
+    // this.caseService.saveProfile(id,e);
   }
 
   async getRegisters(): Promise<void> {
