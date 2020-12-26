@@ -83,7 +83,6 @@ export class CameraComponent implements OnInit {
   async save(): Promise<void> {
     const uri: any = this.webcamImage;
     const t = await this.dataURItoBlob(uri._imageAsDataUrl);
-
     this.onsave.emit(t);
     this.modalWebcam = false;
     this.showWebcam = false;
