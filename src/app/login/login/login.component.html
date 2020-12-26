@@ -21,9 +21,10 @@
                         <div class="clr-row">
                             <div class="clr-col-12">
                                 <input class="clr-col-7 clr-input width-fit" placeholder="OTP 6 หลัก" maxlength="6"
-                                    [(ngModel)]="otp" [disabled]="isVerify"/>
+                                    [(ngModel)]="otp" [disabled]="isVerify" />
                                 <button style="float: right;" class="clr-col-4 width-fit" (click)="verify()"
-                                    [disabled]="isLoad || !ref || isVerify" class="btn btn-primary btn-sm">ยืนยัน OTP</button>
+                                    [disabled]="isLoad || !ref || isVerify" class="btn btn-primary btn-sm">ยืนยัน
+                                    OTP</button>
                             </div>
                         </div>
                         <br>
@@ -36,7 +37,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button (click)="doLogin()" [disabled]="isLoad || eventCode.length < 1 || otp.length < 6"
+                    <button (click)="doLogin()" [disabled]="isLoad || eventCode.length < 1 || !isVerify"
                         class="btn btn-success">ยืนยัน</button>
                     <button (click)="getEvent()" [disabled]="isLoad || !isVerify"
                         class="btn btn-success-outline">Event</button>
@@ -52,20 +53,21 @@
         <div class="clr-row">
             <div class="clr-col-7">
                 <clr-datagrid>
-                    <clr-dg-column>User ID</clr-dg-column>
-                    <clr-dg-column>Name</clr-dg-column>
-                    <clr-dg-column>Creation date</clr-dg-column>
-                    <clr-dg-column>Favorite color</clr-dg-column>
-                    <clr-dg-column>Favorite color</clr-dg-column>
+                    <clr-dg-column>Event Code</clr-dg-column>
+                    <clr-dg-column>รหัสหน่วยงาน</clr-dg-column>
+                    <clr-dg-column>รายละเอียด</clr-dg-column>
+                    <clr-dg-column>สถานที่</clr-dg-column>
+                    <!-- <clr-dg-column>วันที่เริ่ม-สุดสิ้น</clr-dg-column> -->
+                    <clr-dg-column>ปิด/เปิดการใช้งาน</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let user of eventList">
-                        <clr-dg-cell>{{user.id}}</clr-dg-cell>
-                        <clr-dg-cell>{{user.name}}</clr-dg-cell>
-                        <clr-dg-cell>{{user.creation}}</clr-dg-cell>
-                        <clr-dg-cell>{{user.color}}</clr-dg-cell>
-                        <clr-dg-cell><input type="checkbox" clrToggle value="option1" name="options" /></clr-dg-cell>
+                    <clr-dg-row *ngFor="let i of eventList">
+                        <clr-dg-cell>{{i.code}}</clr-dg-cell>
+                        <clr-dg-cell>{{i.hospcode}}</clr-dg-cell>
+                        <clr-dg-cell>{{i.place_detail}}</clr-dg-cell>
+                        <clr-dg-cell>{{i.color}}</clr-dg-cell>
+                        <!-- <clr-dg-cell>{{i.start_date}} - {{i.end_date}}</clr-dg-cell> -->
+                        <clr-dg-cell><input type="checkbox" (click)="toggleActived(i)" clrToggle [(ngModel)]="i.is_actived" /></clr-dg-cell>
                     </clr-dg-row>
-                    <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
                 </clr-datagrid>
             </div>
             <div class="clr-col-5">
@@ -77,24 +79,18 @@
                                     <div class="clr-col-12">
                                         <div class="clr-form clr-form-compact clr-row">
                                             <label class="clr-control-label clr-col-3">รายละเอียด : </label>
-                                            <input type="text" [(ngModel)]="detail"
+                                            <input type="text" [(ngModel)]="placeDetail"
                                                 class="clr-col-9 clr-input width-fit" placeholder="รายละเอียด">
                                         </div>
                                     </div>
                                     <div class="clr-col-12">
                                         <div class="clr-form clr-form-compact clr-row">
-                                            <label class="clr-control-label clr-col-3">ที่อยู่ : </label>
-                                            <input type="text" [(ngModel)]="address"
-                                                class="clr-col-9 clr-input width-fit" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="clr-col-12">
-                                        <div class="clr-form clr-form-compact clr-row">
-                                            <label class="clr-control-label clr-col-3">ตำบล : </label>
+                                            <label class="clr-control-label clr-col-3">จังหวัด : </label>
 
                                             <div class="clr-select-wrapper clr-col-9">
-                                                <select class="clr-select" style="width: 100%;" [(ngModel)]="newTambon">
-                                                    <option *ngFor="let i of tambon" [value]="i.id">{{i.name}}
+                                                <select (change)="getDistrict($event)" class="clr-select"
+                                                    style="width: 100%;" [(ngModel)]="newProvince">
+                                                    <option *ngFor="let i of province" [value]="i.code">{{i.name_th}}
                                                     </option>
                                                 </select>
                                             </div>
@@ -105,8 +101,9 @@
                                             <label class="clr-control-label clr-col-3">อำเภอ : </label>
 
                                             <div class="clr-select-wrapper clr-col-9">
-                                                <select class="clr-select" style="width: 100%;" [(ngModel)]="newAmpur">
-                                                    <option *ngFor="let i of ampur" [value]="i.id">{{i.name}}
+                                                <select (change)="getSubdistrict($event)" class="clr-select"
+                                                    style="width: 100%;" [(ngModel)]="newAmpur">
+                                                    <option *ngFor="let i of ampur" [value]="i.code">{{i.name_th}}
                                                     </option>
                                                 </select>
                                             </div>
@@ -114,22 +111,38 @@
                                     </div>
                                     <div class="clr-col-12">
                                         <div class="clr-form clr-form-compact clr-row">
-                                            <label class="clr-control-label clr-col-3">จังหวัด : </label>
+                                            <label class="clr-control-label clr-col-3">ตำบล : </label>
 
                                             <div class="clr-select-wrapper clr-col-9">
-                                                <select class="clr-select" style="width: 100%;"
-                                                    [(ngModel)]="newProvince">
-                                                    <option *ngFor="let i of province" [value]="i.id">{{i.name}}
+                                                <select (change)="selectSubdistrict($event)" class="clr-select"
+                                                    style="width: 100%;" [(ngModel)]="newTambon">
+                                                    <option *ngFor="let i of tambon" [value]="i.code">{{i.name_th}}
                                                     </option>
                                                 </select>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="clr-col-12">
+                                        <div class="clr-form clr-form-compact clr-row">
+                                            <label class="clr-control-label clr-col-3">วันที่เริ่ม : (เดือน/วัน/ปี)</label>
+                                            <clr-date-container class="clr-input width-fit">
+                                                <input type="date" clrDate [(ngModel)]="startDate">
+                                            </clr-date-container>
+                                        </div>
+                                    </div>
+                                    <div class="clr-col-12">
+                                        <div class="clr-form clr-form-compact clr-row">
+                                            <label class="clr-control-label clr-col-3">วันที่สิ้นสุด : (เดือน/วัน/ปี)</label>
+                                            <clr-date-container class="clr-input width-fit">
+                                                <input type="date" clrDate [(ngModel)]="endDate">
+                                            </clr-date-container>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-outline">เพิ่ม</button>
+                            <button (click)="saveEvent()" [disabled]="!newProvince || !newAmpur || !newTambon" class="btn btn-outline">เพิ่ม</button>
                         </div>
                     </div>
                 </div>
@@ -137,6 +150,6 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="modalEvent = false">ยืนยัน</button>
+        <button type="button" class="btn btn-warning" (click)="modalEvent = false">ปิด</button>
     </div>
 </clr-modal>
