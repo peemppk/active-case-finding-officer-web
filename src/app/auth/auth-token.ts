@@ -12,7 +12,7 @@ export class AuthToken implements CanActivate {
   constructor(private router: Router) { }
 
   canActivate(): boolean {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (token) {
       const isTokenExpired = this.jwtHelper.isTokenExpired(token);
       if (isTokenExpired) {

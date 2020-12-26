@@ -3,7 +3,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 
 export function tokenGetter(): any {
-  return sessionStorage.getItem('token');
+  return localStorage.getItem('token');
 }
 
 @NgModule({

@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
       this.isLoad = true;
       const rs = await this.loginService.doLogin(this.eventCode);
       if (rs.ok) {
-        sessionStorage.setItem('eventId', rs.rows.id);
+        localStorage.setItem('eventId', rs.rows.id);
         this.route.navigate(['/officer/list-case']);
       } else {
         this.alertService.error();
@@ -113,7 +113,7 @@ export class LoginComponent implements OnInit {
       this.isLoad = true;
       const rs = await this.loginService.verify(this.telephone, this.otp, this.transactionId, this.vendor);
       if (rs.ok) {
-        sessionStorage.setItem('token', rs.token);
+        localStorage.setItem('token', rs.token);
         this.isVerify = true;
         this.isLoad = false;
         this.alertService.success('ยืนยันตนเรียบร้อย');
