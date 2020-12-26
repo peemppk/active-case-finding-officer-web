@@ -17,8 +17,7 @@ export class LayoutComponent implements OnInit {
   }
 
   logout(): void {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('access_token');
+    sessionStorage.clear();
     this.router.navigate(['/login']);
   }
 
