@@ -14,6 +14,8 @@ import { ScanComponent } from './scan/scan.component';
 import { environment } from 'src/environments/environment';
 import { ScanLabComponent } from './scan-lab/scan-lab.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CameraComponent } from './camera/camera.component';
+import { WebcamModule } from 'ngx-webcam';
 import { AuthModule } from './auth/auth.module';
 
 
@@ -25,6 +27,7 @@ import { AuthModule } from './auth/auth.module';
     LayoutComponent,
     ScanComponent,
     ScanLabComponent,
+    CameraComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,11 +37,13 @@ import { AuthModule } from './auth/auth.module';
     LoginModule,
     FormsModule,
     HttpClientModule,
+    WebcamModule,
     AuthModule
   ],
   providers: [
     { provide: 'API_URL', useValue: environment.apiUrl },
   ],
+  exports: [CameraComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
