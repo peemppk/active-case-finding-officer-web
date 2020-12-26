@@ -10,16 +10,16 @@
         </div>
         <div class="clr-col-12">
             <clr-datagrid>
-                <clr-dg-column>User ID</clr-dg-column>
-                <clr-dg-column>Name</clr-dg-column>
-                <clr-dg-column>Creation date</clr-dg-column>
-                <clr-dg-column>Favorite color</clr-dg-column>
+                <clr-dg-column>เลขอ้างอิงบุคคล</clr-dg-column>
+                <clr-dg-column>ชื่อ</clr-dg-column>
+                <clr-dg-column>นามสกุล</clr-dg-column>
+                <clr-dg-column>เบอร์โทรศัพท์</clr-dg-column>
 
-                <clr-dg-row *ngFor="let user of caseList">
-                    <clr-dg-cell>{{user.id}}</clr-dg-cell>
-                    <clr-dg-cell>{{user.name}}</clr-dg-cell>
-                    <clr-dg-cell>{{user.creation}}</clr-dg-cell>
-                    <clr-dg-cell>{{user.color}}</clr-dg-cell>
+                <clr-dg-row *ngFor="let i of caseList">
+                    <clr-dg-cell>{{i.serial_code}}</clr-dg-cell>
+                    <clr-dg-cell>{{i.title_name}} {{i.first_name}}</clr-dg-cell>
+                    <clr-dg-cell>{{i.last_name}}</clr-dg-cell>
+                    <clr-dg-cell>{{i.telephone}}</clr-dg-cell>
                 </clr-dg-row>
                 <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
             </clr-datagrid>

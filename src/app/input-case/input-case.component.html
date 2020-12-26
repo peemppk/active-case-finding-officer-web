@@ -5,7 +5,8 @@
                 <div class="clr-row">
                     <div class="clr-col-12">
                         <div class="clr-form clr-form-compact clr-row">
-                            <label class="clr-control-label clr-col-3">ถ่ายรูปหน้า : <span class="required">*</span></label>
+                            <label class="clr-control-label clr-col-3">ถ่ายรูปหน้า : <span
+                                    class="required">*</span></label>
                             <div class="clr-col-8">
                                 <button class="btn btn-primary btn-outline btn-sm" (click)="openModalWebcam()">
                                     <input type="file" #fileInput style="display: none;">
@@ -98,6 +99,13 @@
                 <div class="clr-row">
                     <div class="clr-col-3">
                         <div class="clr-form clr-form-compact clr-row">
+                            <label class="clr-control-label clr-col-3">ที่อยู่ : </label>
+                            <input type="text" [(ngModel)]="address" class="clr-col-9 clr-input width-fit"
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="clr-col-3">
+                        <div class="clr-form clr-form-compact clr-row">
                             <label class="clr-control-label clr-col-3">จังหวัด : </label>
                             <div class="clr-select-wrapper clr-col-9">
                                 <select (change)="getDistrict($event)" class="clr-select" style="width: 100%;"
@@ -112,8 +120,8 @@
                         <div class="clr-form clr-form-compact clr-row">
                             <label class="clr-control-label clr-col-3">อำเภอ : </label>
                             <div class="clr-select-wrapper clr-col-9">
-                                <select (change)="getSubdistrict($event)" class="clr-select" style="width: 100%;"
-                                    [(ngModel)]="district">
+                                <select (change)="getSubdistrict($event)" [disabled]="!province" class="clr-select"
+                                    style="width: 100%;" [(ngModel)]="district">
                                     <option *ngFor="let i of districtList" [value]="i.code">{{i.name_th}}</option>
                                 </select>
                             </div>
@@ -123,17 +131,11 @@
                         <div class="clr-form clr-form-compact clr-row">
                             <label class="clr-control-label clr-col-3">ตำบล : </label>
                             <div class="clr-select-wrapper clr-col-9">
-                                <select class="clr-select" style="width: 100%;" [(ngModel)]="subDistrict">
+                                <select class="clr-select" style="width: 100%;" [disabled]="!district"
+                                    [(ngModel)]="subDistrict">
                                     <option *ngFor="let i of subDistrictList" [value]="i.code">{{i.name_th}}</option>
                                 </select>
                             </div>
-                        </div>
-                    </div>
-                    <div class="clr-col-3">
-                        <div class="clr-form clr-form-compact clr-row">
-                            <label class="clr-control-label clr-col-3">ที่อยู่ : </label>
-                            <input type="text" [(ngModel)]="address" class="clr-col-9 clr-input width-fit"
-                                placeholder="">
                         </div>
                     </div>
                 </div>
@@ -201,14 +203,14 @@
                 <div class="clr-row">
                     <div class="clr-col-5">
                         <div class="clr-form clr-form-compact clr-row">
-                            <label class="clr-control-label clr-col-3">เลขลงทะเบียน : </label>
+                            <label class="clr-control-label clr-col-3">เลขอ้างอิงบุคคล : </label>
                             <input type="text" [(ngModel)]="serialCode" class="clr-col-7 clr-input width-fit"
                                 placeholder="">
                         </div>
                     </div>
                     <div class="clr-col-5">
                         <div class="clr-form clr-form-compact clr-row">
-                            <label class="clr-control-label clr-col-3">เลขLab : </label>
+                            <label class="clr-control-label clr-col-3">เลขสิ่งส่งตรวจ : </label>
                             <input type="text" [(ngModel)]="labCode" class="clr-col-7 clr-input width-fit"
                                 placeholder="">
                         </div>

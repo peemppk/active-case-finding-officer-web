@@ -61,7 +61,6 @@ export class InputCaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.telephone);
     if (this.telephone) {
       this.getRegisters();
     } else {
@@ -95,7 +94,6 @@ export class InputCaseComponent implements OnInit {
   }
 
   async setEdit(): Promise<void> {
-    console.log(this.editService);
     this.titleName = this.editService.title_name;
     this.firstName = this.editService.first_name;
     this.lastName = this.editService.last_name;
@@ -155,7 +153,7 @@ export class InputCaseComponent implements OnInit {
     }
   }
 
-  saveService(): void {
+  async saveService(): Promise<void> {
     const obj = {
       title_name: this.titleName,
       first_name: this.firstName,
@@ -170,13 +168,23 @@ export class InputCaseComponent implements OnInit {
       telephone_boss: this.telephoneBoss,
 
       address: this.address,
-      province: this.province,
+      province_code: this.province,
       district_code: this.district,
-      subDistrict: this.subDistrict,
+      subdistrict_code: this.subDistrict,
       serial_code: this.serialCode,
       event_id: this.eventId,
     };
-    console.log(obj);
 
+    try {
+      const rs = await this.caseService.saveService(obj, this.labCode);
+      if (rs.ok) {
+        this.router.navigate(['/officer/list-case']);
+        this.alertService.success();
+      } else {
+        this.alertService.error(rs.error);
+      }
+    } catch (error) {
+      this.alertService.error(error);
+    }
   }
 }

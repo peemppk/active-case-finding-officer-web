@@ -18,6 +18,12 @@ export class ScanComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  async doEnter(event): Promise<void> {
+    if (event.keyCode === 13) {
+      this.scan();
+    }
+  }
+
   scan(): void {
     this.route.navigate(['/officer/input-case', { telephone: this.telephone }]);
   }
