@@ -13,6 +13,11 @@ export class EventService {
     return this.http.get(url).toPromise();
   }
 
+  getEventInfo(id): Promise<any> {
+    const url = `${this.url}/event/info?id=${id}`;
+    return this.http.get(url).toPromise();
+  }
+
   updateEvent(data): Promise<any> {
     const url = `${this.url}/event`;
     return this.http.put(url, data).toPromise();
