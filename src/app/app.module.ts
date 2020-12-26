@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CameraComponent } from './camera/camera.component';
 import { WebcamModule } from 'ngx-webcam';
 import { AuthModule } from './auth/auth.module';
+import { AuthLogin } from './auth/auth-login.service';
+import { AuthToken } from './auth/auth-token';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { AuthModule } from './auth/auth.module';
     AuthModule
   ],
   providers: [
+    AuthLogin,
+    AuthToken,
     { provide: 'API_URL', useValue: environment.apiUrl },
   ],
   exports: [CameraComponent],

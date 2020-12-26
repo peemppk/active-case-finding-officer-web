@@ -5,12 +5,14 @@ import { ListCaseComponent } from './list-case/list-case.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ScanLabComponent } from './scan-lab/scan-lab.component';
 import { ScanComponent } from './scan/scan.component';
+import { AuthToken } from './auth/auth-token';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'officer',
     component: LayoutComponent,
+    canActivate: [AuthToken],
     children: [
       { path: '', redirectTo: 'list-case', pathMatch: 'full' },
       { path: 'list-case', component: ListCaseComponent },
