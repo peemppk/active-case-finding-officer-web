@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
       const rs = await this.loginService.doLogin(this.eventCode);
       if (rs.ok) {
         sessionStorage.setItem('eventId', rs.rows.id);
-        this.route.navigate(['/officer', { eventInfo: rs.rows }]);
+        this.route.navigate(['/officer/list-case']);
       } else {
         this.alertService.error();
       }
