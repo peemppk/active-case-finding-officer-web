@@ -21,7 +21,7 @@ export class InputCaseComponent implements OnInit {
   doctype: any;
 
   detail: any;
-
+  profiles: any;
 
   @ViewChild('camera') camera: CameraComponent;
   constructor(
@@ -38,7 +38,8 @@ export class InputCaseComponent implements OnInit {
   }
 
   onSaveProfile(e): void {
-    console.log(e);
-    // this.caseService.testSave(e._imageAsDataUrl);
+    this.profiles = e;
+    // console.log(e);
+    // this.caseService.saveProfile(id,e);
   }
 }

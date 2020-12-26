@@ -5,7 +5,7 @@ import { AlertService } from '../../shared/alert.service';
 import { EventService } from '../../services/event.service';
 import { BasicService } from '../../services/basic.service';
 import * as moment from 'moment';
-import * as findIndex from 'lodash/findIndex';
+import { findIndex } from 'lodash';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
