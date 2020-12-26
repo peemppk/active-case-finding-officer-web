@@ -35,7 +35,6 @@ export class ListCaseComponent implements OnInit {
       } else {
         this.alertService.error(rs.error);
       }
-      console.log(rs);
     } catch (error) {
       this.alertService.error(error);
     }
