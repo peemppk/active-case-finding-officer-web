@@ -9,7 +9,17 @@ export class EventService {
   constructor(private http: HttpClient, @Inject('API_URL') private url: string) { }
 
   getEvent(): Promise<any> {
-    const url = `${this.url}/login/event`;
+    const url = `${this.url}/event`;
     return this.http.get(url).toPromise();
+  }
+
+  updateEvent(data): Promise<any> {
+    const url = `${this.url}/event`;
+    return this.http.put(url, data).toPromise();
+  }
+
+  saveEvent(data): Promise<any> {
+    const url = `${this.url}/event`;
+    return this.http.post(url, data).toPromise();
   }
 }

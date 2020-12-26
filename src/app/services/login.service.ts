@@ -26,4 +26,9 @@ export class LoginService {
     const url = `${this.url}/login/verify`;
     return this.http.post(url, params).toPromise();
   }
+
+  doLogin(eventCode): Promise<any> {
+    const url = `${this.url}/event/check-event?eventCode=${eventCode}`;
+    return this.http.get(url).toPromise();
+  }
 }

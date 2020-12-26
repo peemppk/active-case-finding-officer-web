@@ -14,6 +14,7 @@ import { ScanComponent } from './scan/scan.component';
 import { environment } from 'src/environments/environment';
 import { ScanLabComponent } from './scan-lab/scan-lab.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     LoginModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule
   ],
   providers: [
     { provide: 'API_URL', useValue: environment.apiUrl },

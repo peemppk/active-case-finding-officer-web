@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from 'node_modules/@angular/router';
+import { Router, ActivatedRoute } from 'node_modules/@angular/router';
 
 @Component({
   selector: 'app-list-case',
@@ -10,20 +10,28 @@ import { Router } from 'node_modules/@angular/router';
 export class ListCaseComponent implements OnInit {
 
   caseList: any = [];
+  eventInfo: any;
 
   constructor(
     private route: Router,
-  ) { }
+    private router: ActivatedRoute,
+  ) {
+    this.router.params.subscribe(param => {
+      this.eventInfo = param.eventInfo;
+    });
+  }
 
   ngOnInit(): void {
-    this.caseList = [
-      {
-        id: 2,
-        name: 'ss',
-        creation: 'dd',
-        color: 'bb',
-      }
-    ];
+    // this.caseList = [
+    //   {
+    //     id: 2,
+    //     name: 'ss',
+    //     creation: 'dd',
+    //     color: 'bb',
+    //   }
+    // ];
+
+    console.log(this.eventInfo);
   }
 
   register(): void {
