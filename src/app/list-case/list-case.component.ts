@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from 'node_modules/@angular/router';
+import { Router } from 'node_modules/@angular/router';
+import { CaseService } from '../services/case.service';
 
 @Component({
   selector: 'app-list-case',
@@ -14,11 +15,8 @@ export class ListCaseComponent implements OnInit {
 
   constructor(
     private route: Router,
-    private router: ActivatedRoute,
+    private caseService: CaseService,
   ) {
-    this.router.params.subscribe(param => {
-      this.eventInfo = param.eventInfo;
-    });
   }
 
   ngOnInit(): void {
@@ -30,8 +28,16 @@ export class ListCaseComponent implements OnInit {
     //     color: 'bb',
     //   }
     // ];
+    this.getCase();
+  }
 
-    console.log(this.eventInfo);
+  async getCase(): Promise<void> {
+    try {
+      const rs = await this.caseService.getService();
+      console.log(rs);
+    } catch (error) {
+
+    }
   }
 
   register(): void {

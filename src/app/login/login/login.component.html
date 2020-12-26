@@ -78,9 +78,9 @@
                                 <div class="clr-row">
                                     <div class="clr-col-12">
                                         <div class="clr-form clr-form-compact clr-row">
-                                            <label class="clr-control-label clr-col-3">รายละเอียด : </label>
+                                            <label class="clr-control-label clr-col-3">ชื่อสถานที่ : </label>
                                             <input type="text" [(ngModel)]="placeDetail"
-                                                class="clr-col-9 clr-input width-fit" placeholder="รายละเอียด">
+                                                class="clr-col-9 clr-input width-fit" placeholder="ชื่อสถานที่">
                                         </div>
                                     </div>
                                     <div class="clr-col-12">
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button (click)="saveEvent()" [disabled]="!newProvince || !newAmpur || !newTambon" class="btn btn-outline">เพิ่ม</button>
+                            <button (click)="saveEvent()" [disabled]="!newProvince || !newAmpur || !newTambon || !placeDetail" class="btn btn-outline">เพิ่ม</button>
                         </div>
                     </div>
                 </div>

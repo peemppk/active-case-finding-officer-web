@@ -27,13 +27,18 @@ export class CaseService {
         }
       };
 
-      const token = sessionStorage.getItem('token');
+      const token = localStorage.getItem('token');
       const url = `http://localhost:3000/register/pre/upload-profile/1?token=${token}`;
       xhr.open('POST', url, true);
       xhr.send(formData);
     });
-  
+
     // const url = `${this.url}/login/event`;
     // return this.http.get(url).toPromise();
+  }
+
+  getService(): Promise<any> {
+    const url = `${this.url}/api`;
+    return this.http.get(url).toPromise();
   }
 }
