@@ -12,7 +12,7 @@ export function tokenGetter(): any {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        allowedDomains: ['http://203.157.19.162', '203.157.19.162'],
+        allowedDomains: ['localhost:3000', '203.157.19.162'],
         disallowedRoutes: ['localhost:3000/login/']
       }
     })
