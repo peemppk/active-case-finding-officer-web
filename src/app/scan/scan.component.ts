@@ -9,7 +9,7 @@ import { Router } from 'node_modules/@angular/router';
 })
 export class ScanComponent implements OnInit {
 
-  code: any;
+  telephone: any;
 
   constructor(
     private route: Router,
@@ -19,7 +19,7 @@ export class ScanComponent implements OnInit {
   }
 
   scan(): void {
-    this.route.navigate(['/officer/input-case']);
+    this.route.navigate(['/officer/input-case', { telephone: this.telephone }]);
   }
 
 }

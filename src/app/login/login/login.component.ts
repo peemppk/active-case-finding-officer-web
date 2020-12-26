@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.telephone = '0874107719';
+    // this.telephone = '0874107719';
     // this.isVerify = true;
 
     this.startDate = moment().format('MM/DD/YYYY');
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
       this.isLoad = true;
       const rs = await this.loginService.doLogin(this.eventCode);
       if (rs.ok) {
-        localStorage.setItem('eventId', rs.rows.id);
+        localStorage.setItem('eventId', rs.rows[0].id);
         this.route.navigate(['/officer/list-case']);
       } else {
         this.alertService.error();
@@ -113,9 +113,9 @@ export class LoginComponent implements OnInit {
       this.isLoad = true;
       const rs = await this.loginService.verify(this.telephone, this.otp, this.transactionId, this.vendor);
       if (rs.ok) {
-        localStorage.setItem('token', rs.token);
         this.isVerify = true;
         this.isLoad = false;
+        localStorage.setItem('token', rs.token);
         this.alertService.success('ยืนยันตนเรียบร้อย');
       } else {
         this.isLoad = false;

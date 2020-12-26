@@ -41,4 +41,9 @@ export class CaseService {
     const url = `${this.url}/api`;
     return this.http.get(url).toPromise();
   }
+
+  getEditService(telephone): Promise<any> {
+    const url = `${this.url}/api/edit?telephone=${telephone}`;
+    return this.http.get(url).toPromise();
+  }
 }

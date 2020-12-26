@@ -7,7 +7,7 @@
                         <div class="clr-form clr-form-compact clr-row">
                             <label class="clr-control-label clr-col-3">ถ่ายรูปหน้า : </label>
                             <div class="clr-col-8">
-                                <button class="btn btn-primary btn-outline btn-sm"  (click)="openModalWebcam()" >
+                                <button class="btn btn-primary btn-outline btn-sm" (click)="openModalWebcam()">
                                     <input type="file" #fileInput style="display: none;">
                                     ถ่ายรูป<clr-icon shape="camera"></clr-icon>
                                 </button>
@@ -16,78 +16,82 @@
                     </div>
                 </div>
                 <div class="clr-row">
-                    <div class="clr-col-4">
+                    <div class="clr-col-3">
+                        <div class="clr-form clr-form-compact clr-row">
+                            <label class="clr-control-label clr-col-3">คำนำหน้าชื่อ : </label>
+                            <input type="text" [(ngModel)]="titleName" class="clr-col-9 clr-input width-fit"
+                                placeholder="คำนำหน้าชื่อ">
+                        </div>
+                    </div>
+                    <div class="clr-col-3">
                         <div class="clr-form clr-form-compact clr-row">
                             <label class="clr-control-label clr-col-3">ชื่อ : </label>
-                            <input type="text" name="query" [(ngModel)]="name" class="clr-col-9 clr-input width-fit"
+                            <input type="text" [(ngModel)]="firstName" class="clr-col-9 clr-input width-fit"
                                 placeholder="ชื่อ">
                         </div>
                     </div>
-                    <div class="clr-col-4">
+                    <div class="clr-col-3">
                         <div class="clr-form clr-form-compact clr-row">
                             <label class="clr-control-label clr-col-3">นามสกุล : </label>
-                            <input type="text" name="query" [(ngModel)]="lastName" class="clr-col-9 clr-input width-fit"
+                            <input type="text" [(ngModel)]="lastName" class="clr-col-9 clr-input width-fit"
                                 placeholder="นามสกุล">
                         </div>
                     </div>
-                    <div class="clr-col-4">
+                    <div class="clr-col-3">
                         <div class="clr-form clr-form-compact clr-row">
-                            <label class="clr-control-label clr-col-3">เพศ : </label>
-                            <div class="clr-form-control clr-col-9" style="position: relative;top: -10px;">
-                                <div class="clr-radio-wrapper">
-                                    <input type="radio" id="vertical-radio1" name="radio-full" value="M"
-                                        class="clr-radio" />
-                                    <label for="vertical-radio1" class="clr-control-label">ชาย</label>
-                                </div>
-                                <div class="clr-radio-wrapper">
-                                    <input type="radio" id="vertical-radio2" name="radio-full" value="W"
-                                        class="clr-radio" />
-                                    <label for="vertical-radio2" class="clr-control-label">หญิง</label>
-                                </div>
-                                <div class="clr-radio-wrapper">
-                                    <input type="radio" id="vertical-radio3" name="radio-full" value="O"
-                                        class="clr-radio" />
-                                    <label for="vertical-radio3" class="clr-control-label">อื่นๆ</label>
-                                </div>
-                            </div>
+                            <label class="clr-control-label clr-col-3">วันเกิด : (เดือน/วัน/ปี)</label>
+                            <clr-date-container class="clr-input width-fit" style="position: relative;top: -10px;">
+                                <input type="date" clrDate [(ngModel)]="birthdate">
+                            </clr-date-container>
                         </div>
                     </div>
                 </div>
                 <div class="clr-row">
                     <div class="clr-col-3">
                         <div class="clr-form clr-form-compact clr-row">
-                            <label class="clr-control-label clr-col-3">วันเกิด : </label>
-                            <input type="text" name="query" [(ngModel)]="birthdate"
-                                class="clr-col-9 clr-input width-fit" placeholder="DD-MM-YYYY">
+                            <label class="clr-control-label clr-col-3">เพศ : </label>
+                            <div class="clr-form-control clr-col-9" style="position: relative;top: -10px;">
+                                <div class="clr-radio-wrapper">
+                                    <input type="radio" [(ngModel)]="gender" id="vertical-radio1" name="radio-full"
+                                        value="MALE" class="clr-radio" />
+                                    <label for="vertical-radio1" class="clr-control-label">ชาย</label>
+                                </div>
+                                <div class="clr-radio-wrapper">
+                                    <input type="radio" [(ngModel)]="gender" id="vertical-radio2" name="radio-full"
+                                        value="FEMALE" class="clr-radio" />
+                                    <label for="vertical-radio2" class="clr-control-label">หญิง</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="clr-col-3">
                         <div class="clr-form clr-form-compact clr-row">
-                            <label class="clr-control-label clr-col-3">ที่อยู่ : </label>
-                            <input type="text" name="query" [(ngModel)]="address" class="clr-col-9 clr-input width-fit"
-                                placeholder="">
-                        </div>
-                    </div>
-                    <div class="clr-col-3">
-                        <div class="clr-form clr-form-compact clr-row">
-                            <label class="clr-control-label clr-col-3">ตำบล : </label>
-
-                            <div class="clr-select-wrapper clr-col-9">
-                                <select class="clr-select" style="width: 100%;" [(ngModel)]="tambon">
-                                    <option *ngFor="let i of tambon" [value]="i.id">{{i.name}}</option>
+                            <label class="clr-control-label clr-col-4">ประเภทสัญชาติ : </label>
+                            <div class="clr-select-wrapper clr-col-8">
+                                <select class="clr-select" style="width: 100%;" [(ngModel)]="nationTypeId">
+                                    <option [value]="6">Thai</option>
+                                    <option [value]="3">Stateless</option>
+                                    <option [value]="1">Foreign passport</option>
+                                    <option [value]="5">Escape</option>
+                                    <option [value]="2">Two nation</option>
+                                    <option [value]="7">Child</option>
+                                    <option [value]="4">Other</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="clr-col-3">
                         <div class="clr-form clr-form-compact clr-row">
-                            <label class="clr-control-label clr-col-3">อำเภอ : </label>
-
-                            <div class="clr-select-wrapper clr-col-9">
-                                <select class="clr-select" style="width: 100%;" [(ngModel)]="ampur">
-                                    <option *ngFor="let i of ampur" [value]="i.id">{{i.name}}</option>
-                                </select>
-                            </div>
+                            <label class="clr-control-label clr-col-4">เลขบัตรประชาชน : </label>
+                            <input type="text" [(ngModel)]="cid" class="clr-col-8 clr-input width-fit"
+                                placeholder="เลขบัตรประชาชน">
+                        </div>
+                    </div>
+                    <div class="clr-col-3">
+                        <div class="clr-form clr-form-compact clr-row">
+                            <label class="clr-control-label clr-col-3">เลข Passport : </label>
+                            <input type="text" [(ngModel)]="passport" class="clr-col-9 clr-input width-fit"
+                                placeholder="Passport">
                         </div>
                     </div>
                 </div>
@@ -95,10 +99,10 @@
                     <div class="clr-col-3">
                         <div class="clr-form clr-form-compact clr-row">
                             <label class="clr-control-label clr-col-3">จังหวัด : </label>
-
                             <div class="clr-select-wrapper clr-col-9">
-                                <select class="clr-select" style="width: 100%;" [(ngModel)]="province">
-                                    <option *ngFor="let i of province" [value]="i.id">{{i.name}}
+                                <select (change)="getDistrict($event)" class="clr-select" style="width: 100%;"
+                                    [(ngModel)]="province">
+                                    <option *ngFor="let i of provinceList" [value]="i.code">{{i.name_th}}
                                     </option>
                                 </select>
                             </div>
@@ -106,8 +110,51 @@
                     </div>
                     <div class="clr-col-3">
                         <div class="clr-form clr-form-compact clr-row">
+                            <label class="clr-control-label clr-col-3">อำเภอ : </label>
+                            <div class="clr-select-wrapper clr-col-9">
+                                <select (change)="getSubdistrict($event)" class="clr-select" style="width: 100%;"
+                                    [(ngModel)]="district">
+                                    <option *ngFor="let i of districtList" [value]="i.code">{{i.name_th}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clr-col-3">
+                        <div class="clr-form clr-form-compact clr-row">
+                            <label class="clr-control-label clr-col-3">ตำบล : </label>
+                            <div class="clr-select-wrapper clr-col-9">
+                                <select class="clr-select" style="width: 100%;" [(ngModel)]="subDistrict">
+                                    <option *ngFor="let i of subDistrictList" [value]="i.code">{{i.name_th}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clr-col-3">
+                        <div class="clr-form clr-form-compact clr-row">
+                            <label class="clr-control-label clr-col-3">ที่อยู่ : </label>
+                            <input type="text" [(ngModel)]="address" class="clr-col-9 clr-input width-fit"
+                                placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="clr-row">
+                    <div class="clr-col-3">
+                        <div class="clr-form clr-form-compact clr-row">
+                            <label class="clr-control-label clr-col-4">ประเภทผู้ป่วย : </label>
+
+                            <div class="clr-select-wrapper clr-col-8">
+                                <select class="clr-select" style="width: 100%;" [(ngModel)]="patientType">
+                                    <option [value]="'PUI'">PUI</option>
+                                    <option [value]="'NON-PUI'">NON-PUI</option>
+                                    <option [value]="'REPEAT'">REPEAT</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clr-col-3">
+                        <div class="clr-form clr-form-compact clr-row">
                             <label class="clr-control-label clr-col-3">เบอร์โทรศัพท์ : </label>
-                            <input type="text" name="query" [(ngModel)]="phone" class="clr-col-9 clr-input width-fit"
+                            <input type="text" [(ngModel)]="telephone" class="clr-col-9 clr-input width-fit"
                                 placeholder="เบอร์โทรศัพท์">
                         </div>
                     </div>
@@ -116,9 +163,11 @@
                             <label class="clr-control-label clr-col-4">ประเภทเอกสาร : </label>
 
                             <div class="clr-select-wrapper clr-col-8">
-                                <select class="clr-select" style="width: 100%;" [(ngModel)]="doctype">
-                                    <option [value]="1">Indentify Card</option>
-                                    <option [value]="2">Picture</option>
+                                <select class="clr-select" style="width: 100%;" [(ngModel)]="documentType">
+                                    <option [value]="'THCID'">บัตรประชาชน</option>
+                                    <option [value]="'PASSPORT'">Passport</option>
+                                    <option [value]="'PINKCARD'">บัตรต่างด่าว</option>
+                                    <option [value]="'OTHER'">อื่นๆ</option>
                                 </select>
                             </div>
                         </div>
@@ -134,9 +183,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-success">บันทึกประวัติ</button>
+                <div class="clr-row">
+                    <div class="clr-col-3">
+                        <div class="clr-form clr-form-compact clr-row">
+                            <label class="clr-control-label clr-col-5">เบอร์โทรศัพท์นายจ้าง : </label>
+                            <input type="text" [(ngModel)]="telephoneBoss" class="clr-col-7 clr-input width-fit"
+                                placeholder="เบอร์โทรศัพท์นายจ้าง">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -147,19 +202,20 @@
                     <div class="clr-col-5">
                         <div class="clr-form clr-form-compact clr-row">
                             <label class="clr-control-label clr-col-3">เลขลงทะเบียน : </label>
-                            <input type="text" name="query" [(ngModel)]="name" class="clr-col-7 clr-input width-fit"
+                            <input type="text" [(ngModel)]="serialCode" class="clr-col-7 clr-input width-fit"
                                 placeholder="">
                         </div>
                     </div>
                     <div class="clr-col-5">
                         <div class="clr-form clr-form-compact clr-row">
                             <label class="clr-control-label clr-col-3">เลขLab : </label>
-                            <input type="text" name="query" [(ngModel)]="name" class="clr-col-7 clr-input width-fit"
+                            <input type="text" [(ngModel)]="labCode" class="clr-col-7 clr-input width-fit"
                                 placeholder="">
                         </div>
                     </div>
                     <div class="clr-col-2">
-                        <button class="btn btn-primary">บันทึกการตรวจ</button>
+                        <button (click)="saveService()" [disabled]="!serialCode"
+                            class="btn btn-primary">บันทึกการตรวจ</button>
                     </div>
                 </div>
             </div>
