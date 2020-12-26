@@ -32,8 +32,17 @@ export class CaseService {
       xhr.open('POST', url, true);
       xhr.send(formData);
     });
-  
+
     // const url = `${this.url}/login/event`;
     // return this.http.get(url).toPromise();
+  }
+
+  saveMap(eventId, serialCode, specimenCode): Promise<any> {
+    const url = `${this.url}/api/map`;
+    return this.http.post(url, {
+      eventId,
+      serialCode,
+      specimenCode
+    }).toPromise();
   }
 }
