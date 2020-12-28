@@ -27,13 +27,14 @@ export class ListCaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCase();
+    this.getEventInfo();
   }
 
   async getCase(): Promise<void> {
     try {
-      const rs = await this.eventService.getEventInfo(this.eventId);
+      const rs = await this.caseService.getService(this.eventId);
       if (rs.ok) {
-        this.dataEvent = rs.rows[0];
+        this.caseList = rs.rows;
       } else {
         this.alertService.error(rs.error);
       }
@@ -44,9 +45,9 @@ export class ListCaseComponent implements OnInit {
 
   async getEventInfo(): Promise<void> {
     try {
-      const rs = await this.caseService.getService(this.eventId);
+      const rs = await this.eventService.getEventInfo(this.eventId);
       if (rs.ok) {
-        this.caseList = rs.rows;
+        this.dataEvent = rs.rows[0];
       } else {
         this.alertService.error(rs.error);
       }
