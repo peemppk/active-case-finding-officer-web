@@ -46,8 +46,18 @@ export class CaseService {
     }).toPromise();
   }
 
-  getService(): Promise<any> {
-    const url = `${this.url}/api`;
+  getService(eventId): Promise<any> {
+    const url = `${this.url}/api?eventId=${eventId}`;
     return this.http.get(url).toPromise();
+  }
+
+  getEditService(telephone): Promise<any> {
+    const url = `${this.url}/api/edit?telephone=${telephone}`;
+    return this.http.get(url).toPromise();
+  }
+
+  saveService(data, labCode): Promise<any> {
+    const url = `${this.url}/api`;
+    return this.http.post(url, { data, labCode }).toPromise();
   }
 }

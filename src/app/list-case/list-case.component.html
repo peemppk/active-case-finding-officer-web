@@ -1,6 +1,15 @@
 <div class="main-container">
     <div class="clr-row">
-        <div class="clr-col-3 clr-offset-9">
+        <div class="clr-col-6">
+            <span *ngIf="dataEvent">
+                <span class="label label-info">Event Code: {{dataEvent.code}} </span>
+                <span class="label label-success">ชื่อสถานที่: {{dataEvent.place_detail}} </span>
+                <span class="label label-warning">จังหวัด: {{dataEvent.province_name}}</span>
+                <span class="label label-warning">อำเภอ: {{dataEvent.district_name}}</span>
+                <span class="label label-warning">ตำบล: {{dataEvent.subdistrict_name}}</span>
+            </span>
+        </div>
+        <div class="clr-col-3 clr-offset-3">
             <div style="float: right;">
                 <div class="btn-group btn-primary">
                     <button (click)="register()" class="btn">Register</button>
@@ -10,16 +19,16 @@
         </div>
         <div class="clr-col-12">
             <clr-datagrid>
-                <clr-dg-column>User ID</clr-dg-column>
-                <clr-dg-column>Name</clr-dg-column>
-                <clr-dg-column>Creation date</clr-dg-column>
-                <clr-dg-column>Favorite color</clr-dg-column>
+                <clr-dg-column>เลขอ้างอิงบุคคล</clr-dg-column>
+                <clr-dg-column>ชื่อ</clr-dg-column>
+                <clr-dg-column>นามสกุล</clr-dg-column>
+                <clr-dg-column>เบอร์โทรศัพท์</clr-dg-column>
 
-                <clr-dg-row *ngFor="let user of caseList">
-                    <clr-dg-cell>{{user.id}}</clr-dg-cell>
-                    <clr-dg-cell>{{user.name}}</clr-dg-cell>
-                    <clr-dg-cell>{{user.creation}}</clr-dg-cell>
-                    <clr-dg-cell>{{user.color}}</clr-dg-cell>
+                <clr-dg-row *ngFor="let i of caseList">
+                    <clr-dg-cell>{{i.serial_code}}</clr-dg-cell>
+                    <clr-dg-cell>{{i.title_name}} {{i.first_name}}</clr-dg-cell>
+                    <clr-dg-cell>{{i.last_name}}</clr-dg-cell>
+                    <clr-dg-cell>{{i.telephone}}</clr-dg-cell>
                 </clr-dg-row>
                 <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
             </clr-datagrid>
